@@ -1,4 +1,4 @@
-package métier;
+package com.ingesup.cocktail.metier;
 
 /**
  * Created by alexandre on 15/10/2014.
@@ -6,7 +6,7 @@ package métier;
 public class Cocktail {
     private String nom;
     private String couleur;
-    private Boolean alcool;
+    private String alcool;
     private String base;
     private String ingrédients;
     private String description;
@@ -17,7 +17,7 @@ public class Cocktail {
         super();
     }
 
-    public Cocktail(String unNom, String uneCouleur, Boolean unAlcool, String uneBase, String desIngredient, String uneDescription, String unNomPhoto){
+    public Cocktail(String unNom, String uneCouleur, String unAlcool, String uneBase, String desIngredient, String uneDescription, String unNomPhoto){
         super();
         this.nom = unNom;
         this.couleur= uneCouleur;
@@ -43,10 +43,10 @@ public class Cocktail {
         this.couleur = uneCouleur;
     }
 
-    public Boolean getAlcool(){
+    public String getAlcool(){
         return this.alcool;
     }
-    public void setAlcool(Boolean unAlcool){
+    public void setAlcool(String unAlcool){
         this.alcool = unAlcool;
     }
 
