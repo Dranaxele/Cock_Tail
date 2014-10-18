@@ -1,9 +1,12 @@
 package com.ingesup.cocktail.metier;
 
+import java.util.ArrayList;
+
 /**
  * Created by alexandre on 15/10/2014.
  */
 public class Cocktail {
+    private int id;
     private String nom;
     private String couleur;
     private String alcool;
@@ -11,14 +14,16 @@ public class Cocktail {
     private String ingrédients;
     private String description;
     private String nomPhoto;
+    private static ArrayList<Cocktail> listeCocktail = new ArrayList<Cocktail>();
 
     //Constructeurs
     public Cocktail(){
         super();
     }
 
-    public Cocktail(String unNom, String uneCouleur, String unAlcool, String uneBase, String desIngredient, String uneDescription, String unNomPhoto){
+    public Cocktail(int unId, String unNom, String uneCouleur, String unAlcool, String uneBase, String desIngredient, String uneDescription, String unNomPhoto){
         super();
+        this.id = unId;
         this.nom = unNom;
         this.couleur= uneCouleur;
         this.alcool = unAlcool;
@@ -29,6 +34,13 @@ public class Cocktail {
     }
 
     //Getter et Setter
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int unId) {
+        this.id = unId;
+    }
+
     public String getNom() {
         return this.nom;
     }
@@ -76,5 +88,13 @@ public class Cocktail {
     }
     public void setNomPhoto(String unNomPhoto){
         this.nomPhoto = unNomPhoto;
+    }
+
+    public void addPost(Cocktail theCocktail){
+        listeCocktail.add(theCocktail);
+    }
+
+    public ArrayList<Cocktail> getPost(){
+        return listeCocktail;
     }
 }
