@@ -24,7 +24,7 @@ public class RecupCocktail extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... arg0) {
         // TODO Auto-generated method stub
-        final String strURL = "http://servmcrey78.olympe.in/android/blog.php";
+        final String strURL = "http://reycraft.ovh/android/cocktail.php";
         InputStream is = null;
         String result = "";
 
@@ -67,10 +67,10 @@ public class RecupCocktail extends AsyncTask<String, Void, Boolean> {
                 //Log.d("moi", json_data.getString("titreBlog")+" : "+
                 //	   json_data.getString("descriptionBlog"));
                 Cocktail ajout = new Cocktail();
-                Cocktail post = new Cocktail(json_data.getInt("id"), json_data.getString("titreBlog"),
-                        json_data.getString("descriptionBlog"), json_data.getString("descriptionBlog"),
-                        json_data.getString("descriptionBlog"), json_data.getString("descriptionBlog"),
-                        json_data.getString("descriptionBlog"), json_data.getString("descriptionBlog"));
+                Cocktail post = new Cocktail(json_data.getInt("id"), json_data.getString("nom"),
+                        json_data.getString("couleur"), json_data.getString("alcool"),
+                        json_data.getString("base"), json_data.getString("ingredient"),
+                        json_data.getString("description"), json_data.getString("nomPhoto"));
                 Log.d("moi", post.getNom());
                 ajout.addPost(post);
                 Log.d("moi", ajout.getPost().get(0).getNom());
