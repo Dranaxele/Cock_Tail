@@ -11,7 +11,7 @@ public class Cocktail {
     private String couleur;
     private String alcool;
     private String base;
-    private String ingrédients;
+    private String ingredients;
     private String description;
     private String nomPhoto;
     private static ArrayList<Cocktail> listeCocktail = new ArrayList<Cocktail>();
@@ -28,7 +28,7 @@ public class Cocktail {
         this.couleur= uneCouleur;
         this.alcool = unAlcool;
         this.base = uneBase;
-        this.ingrédients = desIngredient;
+        this.ingredients = desIngredient;
         this.description = uneDescription;
         this.nomPhoto = unNomPhoto;
     }
@@ -69,11 +69,11 @@ public class Cocktail {
         this.base= uneBase;
     }
 
-    public String getIngrédients(){
-        return this.ingrédients;
+    public String getIngredients(){
+        return this.ingredients;
     }
-    public void setIngrédients(String desIngrédients){
-        this.ingrédients = desIngrédients;
+    public void setIngredients(String desIngredients){
+        this.ingredients = desIngredients;
     }
 
     public String getDescription(){
