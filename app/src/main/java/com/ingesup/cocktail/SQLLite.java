@@ -105,7 +105,7 @@ public class SQLLite {
                 values.put("couleur", ((String) unCocktail.getCouleur()));
                 values.put("presence_alcool", ((String) unCocktail.getAlcool()));
                 values.put("base", ((String) unCocktail.getBase()));
-                values.put("ingredients", ((String) unCocktail.getIngredients()));
+                values.put("ingredients", ((String) unCocktail.getIngredient()));
                 values.put("description", ((String) unCocktail.getDescription()));
                 values.put("nom_photo", ((String) unCocktail.getNomPhoto()));
 
