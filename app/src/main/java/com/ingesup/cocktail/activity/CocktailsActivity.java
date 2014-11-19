@@ -34,6 +34,7 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
         initView();
 
+        // TODO handle errors
         new CocktailsAsyncTask(this).execute("");
     }
 
@@ -42,9 +43,7 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
         this.progressDialog = new ProgressDialog(this);
 
         progressDialog.setTitle(R.string.cocktails_dialog_loading);
-
-        this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);
-        this.cocktailsListView.setAdapter(this.cocktailsAdapter);
+        progressDialog.show();
 
         this.cocktailsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -74,6 +73,13 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
     @Override
     public void deliverResult(List<Cocktail> result) {
         this.cocktails = result;
+
+        if (this.cocktailsAdapter == null) {
+            this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);
+            this.cocktailsListView.setAdapter(this.cocktailsAdapter);
+        }
+
+        this.cocktailsAdapter.notifyDataSetChanged();
 
         this.progressDialog.hide();
     }

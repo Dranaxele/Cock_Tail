@@ -55,7 +55,7 @@ public class CocktailAdapter extends BaseAdapter {
 			viewHolder.cocktailName = (TextView) convertView.findViewById(R.id.cocktailItemNameTextView);
 			viewHolder.cocktailColor = (TextView) convertView.findViewById(R.id.cocktailItemColorTextView);
 
-			convertView.setTag(convertView);
+			convertView.setTag(viewHolder);
 
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();

@@ -1,6 +1,7 @@
 package com.ingesup.cocktail.task;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.service.CocktailService;
 import com.ingesup.cocktail.service.CocktailServiceImpl;
@@ -13,6 +14,8 @@ import java.util.List;
  */
 public class CocktailsAsyncTask extends AsyncTask<String, Integer, List<Cocktail>> {
 
+	private static final String TAG = "CocktailService";
+
 	private CocktailService cocktailService = new CocktailServiceImpl();
 
 	private AsyncTaskCallback<List<Cocktail>> asyncTaskCallback;
@@ -23,7 +26,12 @@ public class CocktailsAsyncTask extends AsyncTask<String, Integer, List<Cocktail
 
 	@Override
 	protected List<Cocktail> doInBackground(String... params) {
-		return this.cocktailService.findAll();
+		try {
+			return this.cocktailService.findAll();
+		} catch (Exception e) {
+			Log.e(TAG, "Error while retrieving cocktails " + e.getMessage());
+			return null;
+		}
 	}
 
 	@Override

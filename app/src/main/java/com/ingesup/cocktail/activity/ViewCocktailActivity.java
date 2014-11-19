@@ -18,7 +18,7 @@ public class ViewCocktailActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		this.cocktail = savedInstanceState.getParcelable(AppConstants.COCKTAIL_BUNDLE_PARAM);
+		this.cocktail = getIntent().getParcelableExtra(AppConstants.COCKTAIL_BUNDLE_PARAM);
 
 		initView();
 	}

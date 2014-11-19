@@ -1,6 +1,5 @@
 package com.ingesup.cocktail.service;
 
-import android.util.Log;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.rest.RestTemplateFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,24 +14,17 @@ import java.util.List;
  */
 public class CocktailServiceImpl implements CocktailService {
 
-	private static final String TAG = "CocktailService";
-
 	private static final String COCKTAILS_URL = "http://alexandreplaitant.ddns.net/android/cocktail.php";
 
 	@Override
-	public List<Cocktail> findAll() {
+	public List<Cocktail> findAll() throws Exception {
 
-		try {
-			ResponseEntity<Cocktail[]> cocktails =
-					RestTemplateFactory.getRestTemplate().getForEntity(COCKTAILS_URL, Cocktail[].class);
-			if (cocktails != null) {
-				return Arrays.asList(cocktails.getBody());
-			}
+		ResponseEntity<Cocktail[]> cocktails =
+				RestTemplateFactory.getRestTemplate().getForEntity(COCKTAILS_URL, Cocktail[].class);
+		if (cocktails != null) {
+			return Arrays.asList(cocktails.getBody());
+		} else {
+			return new ArrayList<Cocktail>();
 		}
-		catch (Exception e) {
-			Log.e(TAG, "Error while retrieving cocktails " + e.getMessage());
-		}
-
-		return new ArrayList<Cocktail>();
 	}
 }
