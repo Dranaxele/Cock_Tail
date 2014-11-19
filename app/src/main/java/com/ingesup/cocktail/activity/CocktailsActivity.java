@@ -4,12 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.ingesup.cocktail.AppConstants;
 import com.ingesup.cocktail.R;
+import com.ingesup.cocktail.SQLLite;
 import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
@@ -27,10 +31,20 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
     private CocktailAdapter cocktailsAdapter;
 
+    public static SQLLite monSqlLite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cocktails);
+
+        // SQLLite start :
+        monSqlLite = new SQLLite(this);
+        monSqlLite.open();
+        Log.d("CK_SQLite", " MainActivity : MainActivity onCreate : Etat de la connexion � la base de donn�e : " + monSqlLite.state() + ".");
+        // SQLLite end :
+        monSqlLite.close();
+        monSqlLite = null;
 
         initView();
 
@@ -64,10 +78,14 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_favoris:
+                Intent intent = new Intent(CocktailsActivity.this, CocktailsActivityFavoris.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -82,5 +100,12 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
         this.cocktailsAdapter.notifyDataSetChanged();
 
         this.progressDialog.hide();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.global, menu);
+        return true;
     }
 }

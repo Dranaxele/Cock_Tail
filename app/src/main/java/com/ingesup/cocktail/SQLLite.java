@@ -13,6 +13,8 @@ import android.util.Log;
 
 import com.ingesup.cocktail.metier.Cocktail;
 
+import java.util.List;
+
 public class SQLLite {
     // ATTRIBUTS :
     SQLLiteGestion	BDDGestionnaire;
@@ -34,12 +36,12 @@ public class SQLLite {
     // GESTION DE LA BASE :
     public final class SQLLiteGestion extends SQLiteOpenHelper {
         // ATTRIBUTS :
-        Context			context;
+        Context	context;
 
         // creation de l'objet de gestion de la BDD :
         public SQLLiteGestion(Context context) {
             // base de donnee "cocktails" :
-            super(context, "cocktails", null, 1);
+            super(context, "cocktail", null, 1);
             Log.d("GDL_action", "SQLLite : SQLLiteGestion constructeur : Creation de la base de donnees 'cocktails'.");
             this.context = context;
         }
@@ -48,13 +50,13 @@ public class SQLLite {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("CREATE TABLE IF NOT EXISTS cocktail (id INTEGER PRIMARY KEY," +
-                    "nom TEXT NOT NULL UNIQUE ON CONFLICT REPLACE," +
-                    "couleur TEXT NOT NULL," +
-                    "presence_alcool TEXT NOT NULL," +
-                    "base Text NOT NULL" +
-                    "ingredients TEXT NOT NULL," +
-                    "description TEXT NOT NULL," +
-                    "nom_photo TEXT NOT NULL,)");
+                                                            "nom TEXT NOT NULL UNIQUE ON CONFLICT REPLACE," +
+                                                            "couleur TEXT NOT NULL," +
+                                                            "presence_alcool TEXT NOT NULL," +
+                                                            "base Text NOT NULL," +
+                                                            "ingredients TEXT NOT NULL," +
+                                                            "description TEXT NOT NULL," +
+                                                            "nom_photo TEXT NOT NULL)");
 
             Log.d("GDL_action", "SQLLite : SQLLiteGestion onCreate : Creation de la table dans la base de donnees.");
         }
@@ -79,15 +81,15 @@ public class SQLLite {
             Log.d("GDL_action", "SQLLite : SQLLiteUsage constructeur : Creation du composant d'usage de la base de donnees 'cocktails'.");
         }
         public void actionMettreAJourTableCocktail(){
-            db.execSQL("DROP cocktails");
+            db.execSQL("DROP cocktail");
             db.execSQL("CREATE TABLE IF NOT EXISTS cocktail (id INTEGER PRIMARY KEY," +
-                    "nom TEXT NOT NULL UNIQUE ON CONFLICT REPLACE," +
-                    "couleur TEXT NOT NULL," +
-                    "presence_alcool TEXT NOT NULL," +
-                    "base Text NOT NULL" +
-                    "ingredients TEXT NOT NULL," +
-                    "description TEXT NOT NULL," +
-                    "nom_photo TEXT NOT NULL,)");
+                                                            "nom TEXT NOT NULL UNIQUE ON CONFLICT REPLACE," +
+                                                            "couleur TEXT NOT NULL," +
+                                                            "presence_alcool TEXT NOT NULL," +
+                                                            "base Text NOT NULL," +
+                                                            "ingredients TEXT NOT NULL," +
+                                                            "description TEXT NOT NULL," +
+                                                            "nom_photo TEXT NOT NULL)");
             Log.d("GDL_action", "SQLLite --> SQLLiteUsage : actionMettreAJourTableCocktail : mise a jour de la table cocktail ok.");
         }
         public void actionViderTableCocktail(){
@@ -101,6 +103,7 @@ public class SQLLite {
 
                 // on compte le nombre de cocktail portant le nom :
                 ContentValues values = new ContentValues();
+                values.put("id", ((Integer) unCocktail.getId()));
                 values.put("nom", ((String) unCocktail.getNom()));
                 values.put("couleur", ((String) unCocktail.getCouleur()));
                 values.put("presence_alcool", ((String) unCocktail.getAlcool()));
@@ -145,18 +148,18 @@ public class SQLLite {
             Cursor cursor = db.rawQuery("SELECT id, nom, couleur, alcool, base, ingredients, description, nom_photo FROM cocktail WHERE nom=?", new String [] {nom});
 
             Cocktail unCocktail = new Cocktail(	cursor.getInt(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getString(6),
-                    cursor.getString(7),
-                    cursor.getString(8)
+                                                cursor.getString(2),
+                                                cursor.getString(3),
+                                                cursor.getString(4),
+                                                cursor.getString(5),
+                                                cursor.getString(6),
+                                                cursor.getString(7),
+                                                cursor.getString(8)
                     );
 
             return unCocktail;
         }
-        public Cocktail recupererCocktail(){
+        public List<Cocktail> recupererCocktails(){
             Cocktail mesCocktails = new Cocktail();
 
             Log.d("GDL_action", "SQLLite --> SQLLiteUsage : recupererCocktail : Recuperation de la listes des ocktails dans la BDD SQLLite ok.");
@@ -165,20 +168,20 @@ public class SQLLite {
             if (cursor.moveToFirst()) {
                 do {
                     Cocktail unCocktail = new Cocktail(	cursor.getInt(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
-                            cursor.getString(4),
-                            cursor.getString(5),
-                            cursor.getString(6),
-                            cursor.getString(7),
-                            cursor.getString(8)
+                                                        cursor.getString(2),
+                                                        cursor.getString(3),
+                                                        cursor.getString(4),
+                                                        cursor.getString(5),
+                                                        cursor.getString(6),
+                                                        cursor.getString(7),
+                                                        cursor.getString(8)
                     );
 
                             mesCocktails.addPost(unCocktail);
                 } while (cursor.moveToNext());
             }
 
-            return mesCocktails;
+            return mesCocktails.getPost();
         }
     }
 

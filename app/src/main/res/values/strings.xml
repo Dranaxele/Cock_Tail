@@ -4,4 +4,6 @@
     <string name="app_name">Cock Tail</string>
     <string name="action_settings">Settings</string>
     <string name="cocktails_dialog_loading">Retrieving cocktails ...</string>
+    <string name="action_favoris">Favoris</string>
+
 </resources>
