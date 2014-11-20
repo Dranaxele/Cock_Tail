@@ -27,4 +27,9 @@ public class CocktailServiceImpl implements CocktailService {
 			return new ArrayList<Cocktail>();
 		}
 	}
+
+	@Override
+	public List<Cocktail> findFavourites() {
+		return null;
+	}
 }

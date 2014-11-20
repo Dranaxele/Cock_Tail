@@ -1,20 +1,13 @@
 package com.ingesup.cocktail.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import com.ingesup.cocktail.AppConstants;
 import com.ingesup.cocktail.R;
-import com.ingesup.cocktail.SQLLite;
-import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.adapter.CocktailFavorisAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.task.AsyncTaskCallback;

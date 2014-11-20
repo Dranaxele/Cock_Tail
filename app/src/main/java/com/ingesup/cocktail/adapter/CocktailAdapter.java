@@ -22,6 +22,9 @@ public class CocktailAdapter extends BaseAdapter {
 
 	private LayoutInflater layoutInflater;
 
+	// view to use for item
+	private View itemLayout;
+
 	public CocktailAdapter(Context context, List<Cocktail> cocktails) {
 		this.context = context;
 		this.cocktails = cocktails;

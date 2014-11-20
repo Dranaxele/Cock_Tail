@@ -18,6 +18,7 @@ import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
 import com.ingesup.cocktail.task.CocktailsAsyncTask;
+import com.ingesup.cocktail.utils.FavouriteCocktailUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +69,25 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
                 bundle.putParcelable(AppConstants.COCKTAIL_BUNDLE_PARAM, cocktails.get(position));
 
                 startActivity(showCocktailIntent, bundle);
+            }
+        });
+
+        this.cocktailsListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(AppConstants.COCKTAIL_BUNDLE_PARAM, cocktails.get(position));
+
+                if (FavouriteCocktailUtil.getFavouritesCocktails().contains(cocktails.get(position))) {
+                    // TODO if (favorites.contains(cocktails.get(position)) -> remove from fav ; else -> add to favs
+                    // TODO dialog : add to favourites ? Yes / No
+                } else {
+                    FavouriteCocktailUtil.addFavouriteCocktail(cocktails.get(position));
+                }
+//                Toast.makeText(this, R.string.cocktail_added_to_fav, Toast.LENGTH_SHORT).show();
+
+                return true;
             }
         });
     }

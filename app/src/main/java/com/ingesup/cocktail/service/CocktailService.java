@@ -11,4 +11,6 @@ import java.util.List;
 public interface CocktailService {
 
 	public List<Cocktail> findAll() throws Exception;
+
+	public List<Cocktail> findFavourites();
 }
