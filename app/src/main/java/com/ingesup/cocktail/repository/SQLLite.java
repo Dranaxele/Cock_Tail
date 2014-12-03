@@ -25,6 +25,18 @@ public class SQLLite {
 	private static final String ADD_COCKTAIL_TO_FAVOURITES_SQL = "UPDATE cocktail SET cocktail_favourite = 1 WHERE cocktail_id = ?";
 	private static final String REMOVE_COCKTAIL_FROM_FAVOURITE_SQL = "UPDATE cocktail SET cocktail_favourite = 0 WHERE cocktail_id = ?";
 
+	private static class CocktailSqlColumns {
+		private static final String ID = "id";
+		private static final String NOM = "nom";
+		private static final String COULEUR = "couleur";
+		private static final String PRESENCE_ALCOOL = "presence_alcool";
+		private static final String BASE = "base";
+		private static final String INGREDIENTS = "ingredients";
+		private static final String DESCRIPTION = "description";
+		private static final String NOM_PHOTO = "nom_photo";
+		private static final String COCKTAIL_FAVOURITE = "cocktail_favourite";
+	}
+
 	// ATTRIBUTS :
 	SQLLiteGestion BDDGestionnaire;
 	SQLLiteUsage BDDUsage;
@@ -115,15 +127,15 @@ public class SQLLite {
 
 				// on compte le nombre de cocktail portant le nom :
 				ContentValues values = new ContentValues();
-				values.put("id", ((Integer) unCocktail.getId()));
-				values.put("nom", ((String) unCocktail.getNom()));
-				values.put("couleur", ((String) unCocktail.getCouleur()));
-				values.put("presence_alcool", ((String) unCocktail.getAlcool()));
-				values.put("base", ((String) unCocktail.getBase()));
-				values.put("ingredients", ((String) unCocktail.getIngredient()));
-				values.put("description", ((String) unCocktail.getDescription()));
-				values.put("nom_photo", ((String) unCocktail.getNomPhoto()));
-				values.put("cocktail_favourite", 0);
+				values.put(CocktailSqlColumns.ID, ((Integer) unCocktail.getId()));
+				values.put(CocktailSqlColumns.NOM, ((String) unCocktail.getNom()));
+				values.put(CocktailSqlColumns.COULEUR, ((String) unCocktail.getCouleur()));
+				values.put(CocktailSqlColumns.PRESENCE_ALCOOL, ((String) unCocktail.getAlcool()));
+				values.put(CocktailSqlColumns.BASE, ((String) unCocktail.getBase()));
+				values.put(CocktailSqlColumns.INGREDIENTS, ((String) unCocktail.getIngredient()));
+				values.put(CocktailSqlColumns.DESCRIPTION, ((String) unCocktail.getDescription()));
+				values.put(CocktailSqlColumns.NOM_PHOTO, ((String) unCocktail.getNomPhoto()));
+				values.put(CocktailSqlColumns.COCKTAIL_FAVOURITE, 0);
 
 				result = db.insert(COCKTAIL_TABLE, null, values);
 
@@ -173,14 +185,14 @@ public class SQLLite {
 			Cursor cursor = db.rawQuery("SELECT * FROM cocktail WHERE nom=?", new String[]{nom});
 
 			Cocktail unCocktail = new Cocktail()
-					.id(cursor.getInt(1))
-					.nom(cursor.getString(2))
-					.couleur(cursor.getString(3))
-					.alcool(cursor.getString(4))
-					.base(cursor.getString(5))
-					.ingredient(cursor.getString(6))
-					.description(cursor.getString(7))
-					.nomPhoto(cursor.getString(8));
+					.id(cursor.getInt(cursor.getColumnIndex(CocktailSqlColumns.ID)))
+					.nom(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM)))
+					.couleur(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.COULEUR)))
+					.alcool(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.PRESENCE_ALCOOL)))
+					.base(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.BASE)))
+					.ingredient(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.INGREDIENTS)))
+					.description(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.DESCRIPTION)))
+					.nomPhoto(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM_PHOTO)));
 
 			cursor.close();
 
@@ -197,14 +209,14 @@ public class SQLLite {
 			if (cursor.moveToFirst()) {
 				do {
 					Cocktail favouriteCocktail = new Cocktail()
-							.id(cursor.getInt(1))
-							.nom(cursor.getString(2))
-							.couleur(cursor.getString(3))
-							.alcool(cursor.getString(4))
-							.base(cursor.getString(5))
-							.ingredient(cursor.getString(6))
-							.description(cursor.getString(7))
-							.nomPhoto(cursor.getString(8));
+							.id(cursor.getInt(cursor.getColumnIndex(CocktailSqlColumns.ID)))
+							.nom(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM)))
+							.couleur(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.COULEUR)))
+							.alcool(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.PRESENCE_ALCOOL)))
+							.base(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.BASE)))
+							.ingredient(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.INGREDIENTS)))
+							.description(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.DESCRIPTION)))
+							.nomPhoto(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM_PHOTO)));
 
 					favouritesCocktails.add(favouriteCocktail);
 				}
@@ -234,14 +246,14 @@ public class SQLLite {
 
 			if (cursor.moveToFirst()) {
 				cocktail = new Cocktail()
-						.id(cursor.getInt(1))
-						.nom(cursor.getString(2))
-						.couleur(cursor.getString(3))
-						.alcool(cursor.getString(4))
-						.base(cursor.getString(5))
-						.ingredient(cursor.getString(6))
-						.description(cursor.getString(7))
-						.nomPhoto(cursor.getString(8));
+						.id(cursor.getInt(cursor.getColumnIndex(CocktailSqlColumns.ID)))
+						.nom(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM)))
+						.couleur(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.COULEUR)))
+						.alcool(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.PRESENCE_ALCOOL)))
+						.base(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.BASE)))
+						.ingredient(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.INGREDIENTS)))
+						.description(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.DESCRIPTION)))
+						.nomPhoto(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM_PHOTO)));
 			}
 
 			cursor.close();
@@ -259,26 +271,20 @@ public class SQLLite {
 			if (cursor.moveToFirst()) {
 				do {
 					Cocktail cocktail = new Cocktail()
-							.id(cursor.getInt(1))
-							.nom(cursor.getString(2))
-							.couleur(cursor.getString(3))
-							.alcool(cursor.getString(4))
-							.base(cursor.getString(5))
-							.ingredient(cursor.getString(6))
-							.description(cursor.getString(7))
-							.nomPhoto(cursor.getString(8));
+							.id(cursor.getInt(cursor.getColumnIndex(CocktailSqlColumns.ID)))
+							.nom(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM)))
+							.couleur(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.COULEUR)))
+							.alcool(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.PRESENCE_ALCOOL)))
+							.base(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.BASE)))
+							.ingredient(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.INGREDIENTS)))
+							.description(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.DESCRIPTION)))
+							.nomPhoto(cursor.getString(cursor.getColumnIndex(CocktailSqlColumns.NOM_PHOTO)));
 
 					cocktails.add(cocktail);
 				}
 				while (cursor.moveToNext());
 			}
-/*
-			Cursor dbCursor = db.query(COCKTAIL_TABLE, null, null, null, null, null, null);
 
-			if (dbCursor != null) {
-				dbCursor.moveToFirst();
-			}
-*/
 			cursor.close();
 
 			return cocktails;

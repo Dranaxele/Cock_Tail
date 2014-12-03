@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.service.CocktailServiceFactory;
-import com.ingesup.cocktail.utils.FavouriteCocktailUtil;
 
 import java.util.List;
 
