@@ -47,7 +47,7 @@ public class CocktailsActivityFavoris extends ActionBarActivity implements Async
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent showCocktailIntent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(AppConstants.COCKTAIL_BUNDLE_PARAM, cocktailsFavoris.get(position));
+                bundle.putParcelable(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, cocktailsFavoris.get(position));
 
                 startActivity(showCocktailIntent, bundle);
             }

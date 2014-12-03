@@ -1,6 +1,7 @@
 package com.ingesup.cocktail.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,9 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.ingesup.cocktail.AppConstants;
 import com.ingesup.cocktail.R;
-import com.ingesup.cocktail.SQLLite;
+import com.ingesup.cocktail.repository.SQLLite;
 import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
@@ -32,11 +34,15 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
     private CocktailAdapter cocktailsAdapter;
 
+    private Context context;
+
     public static SQLLite monSqlLite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.context = this;
+
         setContentView(R.layout.activity_cocktails);
 
         // SQLLite start :
@@ -66,7 +72,7 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent showCocktailIntent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(AppConstants.COCKTAIL_BUNDLE_PARAM, cocktails.get(position));
+                bundle.putInt(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, cocktails.get(position).getId());
 
                 startActivity(showCocktailIntent, bundle);
             }
@@ -77,15 +83,15 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(AppConstants.COCKTAIL_BUNDLE_PARAM, cocktails.get(position));
+                bundle.putParcelable(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, cocktails.get(position));
 
                 if (FavouriteCocktailUtil.getFavouritesCocktails().contains(cocktails.get(position))) {
-                    // TODO if (favorites.contains(cocktails.get(position)) -> remove from fav ; else -> add to favs
-                    // TODO dialog : add to favourites ? Yes / No
+                    Toast.makeText(context, R.string.cocktail_already_exists_in_fav, Toast.LENGTH_SHORT).show();
                 } else {
+                    // TODO dialog : add to favourites ? Yes / No
                     FavouriteCocktailUtil.addFavouriteCocktail(cocktails.get(position));
+                    Toast.makeText(context, R.string.cocktail_added_to_fav, Toast.LENGTH_SHORT).show();
                 }
-//                Toast.makeText(this, R.string.cocktail_added_to_fav, Toast.LENGTH_SHORT).show();
 
                 return true;
             }
@@ -113,6 +119,7 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
         this.cocktails = result;
 
         if (this.cocktailsAdapter == null) {
+            FavouriteCocktailUtil.addFavouriteCocktail(this.cocktails.get(1));
             this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);
             this.cocktailsListView.setAdapter(this.cocktailsAdapter);
         }

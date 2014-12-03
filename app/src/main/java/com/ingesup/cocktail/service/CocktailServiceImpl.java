@@ -1,6 +1,8 @@
 package com.ingesup.cocktail.service;
 
+import android.content.Context;
 import com.ingesup.cocktail.metier.Cocktail;
+import com.ingesup.cocktail.repository.CocktailRepositoryFactory;
 import com.ingesup.cocktail.rest.RestTemplateFactory;
 import org.springframework.http.ResponseEntity;
 
@@ -29,7 +31,25 @@ public class CocktailServiceImpl implements CocktailService {
 	}
 
 	@Override
-	public List<Cocktail> findFavourites() {
-		return null;
+	public List<Cocktail> findFavourites(Context context) {
+		return CocktailRepositoryFactory.instance(context).getFavouritesCocktails();
+	}
+
+	@Override
+	public Cocktail findById(int id) throws Exception {
+		Cocktail cocktailToRetrieve = null;
+
+		ResponseEntity<Cocktail[]> cocktails =
+				RestTemplateFactory.getRestTemplate().getForEntity(COCKTAILS_URL, Cocktail[].class);
+		if (cocktails != null) {
+			for (Cocktail cocktail : cocktails.getBody()) {
+				if (cocktail.getId() == id) {
+					cocktailToRetrieve = cocktail;
+					break;
+				}
+			}
+		}
+
+		return cocktailToRetrieve;
 	}
 }

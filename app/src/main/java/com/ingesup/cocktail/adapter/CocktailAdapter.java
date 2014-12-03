@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.metier.Cocktail;
+import com.ingesup.cocktail.utils.FavouriteCocktailUtil;
 
 import java.util.List;
 
@@ -57,6 +59,7 @@ public class CocktailAdapter extends BaseAdapter {
 
 			viewHolder.cocktailName = (TextView) convertView.findViewById(R.id.cocktailItemNameTextView);
 			viewHolder.cocktailColor = (TextView) convertView.findViewById(R.id.cocktailItemColorTextView);
+			viewHolder.favouriteImage = (ImageView) convertView.findViewById(R.id.favouriteImageView);
 
 			convertView.setTag(viewHolder);
 
@@ -68,6 +71,10 @@ public class CocktailAdapter extends BaseAdapter {
 		if (cocktail != null) {
 			viewHolder.cocktailName.setText(cocktail.getNom());
 			viewHolder.cocktailColor.setText(cocktail.getCouleur());
+
+			if (FavouriteCocktailUtil.getFavouritesCocktails().contains(cocktail)) {
+				viewHolder.favouriteImage.setImageResource(android.R.drawable.star_on);
+			}
 		}
 
 		return convertView;
@@ -77,7 +84,7 @@ public class CocktailAdapter extends BaseAdapter {
 
 		TextView cocktailName;
 		TextView cocktailColor;
-		TextView cocktailAlcohol;
 
+		ImageView favouriteImage;
 	}
 }

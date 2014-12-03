@@ -2,6 +2,7 @@ package com.ingesup.cocktail.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 import com.ingesup.cocktail.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.metier.Cocktail;
@@ -14,11 +15,13 @@ public class ViewCocktailActivity extends Activity {
 
 	private Cocktail cocktail;
 
+	private TextView cocktailNameTextView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		final int cocktailId = getIntent().getIntExtra(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, 0);
 
-		this.cocktail = getIntent().getParcelableExtra(AppConstants.COCKTAIL_BUNDLE_PARAM);
 
 		initView();
 	}

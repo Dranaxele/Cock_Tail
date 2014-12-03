@@ -9,5 +9,5 @@ public class AppConstants {
 	private AppConstants() {
 	}
 
-	public static final String COCKTAIL_BUNDLE_PARAM = "COCKTAIL";
+	public static final String COCKTAIL_ID_BUNDLE_PARAM = "COCKTAIL";
 }
