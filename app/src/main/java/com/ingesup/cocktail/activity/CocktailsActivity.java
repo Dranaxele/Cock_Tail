@@ -47,14 +47,20 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
         setContentView(R.layout.activity_cocktails);
 
-//        Log.d("CK_SQLite", " MainActivity : MainActivity onCreate : Etat de la connexion � la base de donn�e : " + monSqlLite.state() + ".");
-
         initView();
 
         try {
-            if (CocktailServiceFactory.instance(this).dbFindAll().size() < 1) {
+            List<Cocktail> dbCocktails = CocktailServiceFactory.instance(this).dbFindAll();
+
+            if (dbCocktails.size() < 1) {
 				new CocktailsAsyncTask(this).execute("");
-			}
+			} else {
+                cocktails.addAll(dbCocktails);
+
+                initAdapter();
+
+                progressDialog.hide();
+            }
         } catch (Exception e) {
             Log.d("CK_SQLite", "Failed to retrieve cocktails");
 
@@ -84,11 +90,12 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent showCocktailIntent = new Intent();
+                Intent showCocktailIntent = new Intent(context, ViewCocktailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, cocktails.get(position).getId());
+                showCocktailIntent.putExtras(bundle);
 
-                startActivity(showCocktailIntent, bundle);
+                startActivity(showCocktailIntent);
             }
         });
 
@@ -153,12 +160,7 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
             CocktailServiceFactory.instance(this).addAll(result);
         }
 
-        if (this.cocktailsAdapter == null) {
-            this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);
-            this.cocktailsListView.setAdapter(this.cocktailsAdapter);
-        }
-
-        this.cocktailsAdapter.notifyDataSetChanged();
+        initAdapter();
 
         this.progressDialog.hide();
     }
@@ -168,5 +170,14 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.global, menu);
         return true;
+    }
+
+    private void initAdapter() {
+        if (this.cocktailsAdapter == null) {
+            this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);
+            this.cocktailsListView.setAdapter(this.cocktailsAdapter);
+        }
+
+        this.cocktailsAdapter.notifyDataSetChanged();
     }
 }

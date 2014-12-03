@@ -1,5 +1,6 @@
 package com.ingesup.cocktail.metier;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -34,6 +35,13 @@ public class Cocktail implements Parcelable {
         this.ingredient = desIngredient;
         this.description = uneDescription;
         this.nomPhoto = unNomPhoto;
+    }
+
+    public Cocktail(Cursor cursor) {
+        this.id = cursor.getInt(1);
+        this.nom = cursor.getString(2);
+        this.couleur = cursor.getString(3);
+        // TODO finish binding
     }
 
     //Getter et Setter

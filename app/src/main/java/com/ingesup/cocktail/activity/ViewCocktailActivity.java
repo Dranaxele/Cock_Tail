@@ -34,10 +34,10 @@ public class ViewCocktailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		context = this;
 
-		final int cocktailId = getIntent().getIntExtra(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, 0);
+		final int cocktailId = getIntent().getExtras().getInt(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, 0);
 
 		try {
-			cocktail = CocktailServiceFactory.instance(this).findById(cocktailId);
+			cocktail = CocktailServiceFactory.instance(this).dbFindById(cocktailId);
 
 			initView();
 		} catch (Exception e) {

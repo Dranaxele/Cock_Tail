@@ -34,7 +34,12 @@ public class CocktailServiceImpl implements CocktailService {
 
 	@Override
 	public List<Cocktail> dbFindAll() throws Exception {
-		return CocktailRepositoryFactory.instance(context).recupererCocktails();
+		return CocktailRepositoryFactory.instance(context).findAllCocktails();
+	}
+
+	@Override
+	public Cocktail dbFindById(int id) throws Exception {
+		return CocktailRepositoryFactory.instance(context).findCocktailById(id);
 	}
 
 	@Override

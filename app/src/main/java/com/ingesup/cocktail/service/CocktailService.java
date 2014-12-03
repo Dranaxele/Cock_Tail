@@ -15,6 +15,8 @@ public interface CocktailService {
 
 	public List<Cocktail> dbFindAll() throws Exception;
 
+	public Cocktail dbFindById(int id) throws Exception;
+
 	public List<Cocktail> findFavourites();
 
 	public Cocktail findById(int id) throws Exception;

@@ -12,11 +12,13 @@ public interface CocktailRepository {
 
 	public List<Cocktail> getFavouritesCocktails();
 
+	public List<Cocktail> findAllCocktails();
+
 	public void addCocktailToFavourite(int cocktailId);
 
 	public void removeCocktailFromFavourite(int cocktailId);
 
-	public List<Cocktail> recupererCocktails();
+	public Cocktail findCocktailById(int id);
 
 	public long insertionCocktail(Cocktail unCocktail);
 

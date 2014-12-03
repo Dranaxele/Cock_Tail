@@ -18,7 +18,7 @@ public class CocktailRepositoryFactory {
 				sqlLite = new SQLLite(context);
 				sqlLite.open();
 			}
-			
+
 			cocktailRepository = sqlLite.getBDDUsage();
 		}
 
