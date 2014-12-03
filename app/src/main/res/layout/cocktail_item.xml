@@ -1,132 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/lbNom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nom: "
-        android:layout_margin="5dp" />
 
     <TextView
             android:id="@+id/cocktailItemNameTextView"
             android:text="CocktailName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/lbNom"
-        android:layout_alignBaseline="@+id/lbNom"/>
-
-    <ImageView
-            android:id="@+id/favouriteImageView"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/lbColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Couleur: "
-        android:layout_below="@+id/lbNom"
-        android:layout_margin="5dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CocktailColor"
-        android:id="@+id/cocktailItemColorTextView"
-        android:layout_below="@+id/lbNom"
-        android:layout_toRightOf="@+id/lbColor"
-        android:layout_toEndOf="@+id/lbColor"
-        android:layout_alignBaseline="@+id/lbColor"/>
-
-    <TextView
-        android:id="@+id/lbBase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Base: "
-        android:layout_below="@+id/lbColor"
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:id="@+id/cocktailItemBaseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CocktailBase"
-        android:layout_toRightOf="@+id/lbBase"
-        android:layout_below="@+id/lbColor"
-        android:layout_alignBaseline="@+id/lbBase"/>
-
-    <TextView
-        android:id="@+id/lbAlcool"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alcool: "
-        android:layout_below="@+id/lbBase"
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:id="@+id/cocktailItemAlcoolTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbBase"
-        android:layout_toRightOf="@+id/lbAlcool"
-        android:text="CocktailAlcool"
-        android:layout_alignBaseline="@+id/lbAlcool"/>
-
-    <TextView
-        android:id="@+id/lbIngredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbAlcool"
-        android:text="Ingredients: "
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:id="@+id/cocktailItemIngredientTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbAlcool"
-        android:layout_toRightOf="@+id/lbIngredient"
-        android:text="CocktailIngredient"
-        android:layout_alignBaseline="@+id/lbIngredient"/>
-
-    <TextView
-        android:id="@+id/lbDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbIngredient"
-        android:text="Descritpion: "
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:id="@+id/cocktailItemDescriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lbIngredient"
-        android:layout_toRightOf="@+id/lbDescription"
-        android:text="CocktailDescription"
-        android:layout_alignBaseline="@+id/lbDescription"/>
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AddFavorite"
-        android:id="@+id/toggleButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textOn="Supprimer"
-        android:textOff="Ajouter"/>
-
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/cocktailItemImageTextView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
-</RelativeLayout>
+</LinearLayout>
