@@ -61,6 +61,11 @@ public class CocktailServiceImpl implements CocktailService {
 	}
 
 	@Override
+	public void removeCocktailFromFavourite(int cocktailId) {
+		CocktailRepositoryFactory.instance(context).removeCocktailFromFavourite(cocktailId);
+	}
+
+	@Override
 	public void setContext(Context context) {
 		this.context = context;
 	}

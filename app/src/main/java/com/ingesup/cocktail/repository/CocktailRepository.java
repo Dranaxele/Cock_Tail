@@ -14,6 +14,8 @@ public interface CocktailRepository {
 
 	public void addCocktailToFavourite(int cocktailId);
 
+	public void removeCocktailFromFavourite(int cocktailId);
+
 	public List<Cocktail> recupererCocktails();
 
 	public long insertionCocktail(Cocktail unCocktail);

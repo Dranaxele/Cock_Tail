@@ -20,6 +20,7 @@ public class SQLLite {
 	private static final String FIND_ALL_COCKTAILS_SQL = "SELECT * FROM cocktail";
 	private static final String FIND_FAVOURITES_COCKTAILS_SQL = "SELECT * FROM cocktail WHERE cocktail_favourite = 1";
 	private static final String ADD_COCKTAIL_TO_FAVOURITES_SQL = "UPDATE cocktail SET cocktail_favourite = 1 WHERE cocktail_id = ?";
+	private static final String REMOVE_COCKTAIL_FROM_FAVOURITE_SQL = "UPDATE cocktail SET cocktail_favourite = 0 WHERE cocktail_id = ?";
 
 	// ATTRIBUTS :
 	SQLLiteGestion BDDGestionnaire;
@@ -202,6 +203,11 @@ public class SQLLite {
 		@Override
 		public void addCocktailToFavourite(int cocktailId) {
 			db.rawQuery(ADD_COCKTAIL_TO_FAVOURITES_SQL, new String[] {String.valueOf(cocktailId)});
+		}
+
+		@Override
+		public void removeCocktailFromFavourite(int cocktailId) {
+			db.rawQuery(REMOVE_COCKTAIL_FROM_FAVOURITE_SQL, new String[] {String.valueOf(cocktailId)});
 		}
 
 		public List<Cocktail> recupererCocktails() {

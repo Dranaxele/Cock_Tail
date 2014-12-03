@@ -103,6 +103,10 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Small Text"
                     android:id="@+id/textView14"/>
+
+            <Button android:id="@+id/removeFromFavouriteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </LinearLayout>

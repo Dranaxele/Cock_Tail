@@ -9,5 +9,8 @@
     <string name="cocktail_already_exists_in_fav">This cocktail already exists in your favourites</string>
     <string name="confirm_title_add_to_favourite">Confirmation</string>
     <string name="confirm_title_add_to_favourite_question">Are you sure to add this cocktail to your favs ?</string>
+    <string name="failed_to_retrieve_cocktails">Failed to retrieve cocktails</string>
+    <string name="removeFromFavourite">Remove from favourites</string>
+    <string name="cocktail_not_found">Cocktail not found</string>
 
 </resources>

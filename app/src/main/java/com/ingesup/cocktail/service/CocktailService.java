@@ -19,5 +19,7 @@ public interface CocktailService {
 
 	public void addCocktailToFavourite(int cocktailId);
 
+	public void removeCocktailFromFavourite(int cocktailId);
+
 	public void setContext(Context context);
 }

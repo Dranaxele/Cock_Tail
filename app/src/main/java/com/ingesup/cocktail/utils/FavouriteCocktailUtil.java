@@ -1,11 +1,7 @@
 package com.ingesup.cocktail.utils;
 
-import android.content.Context;
 import com.ingesup.cocktail.metier.Cocktail;
-import com.ingesup.cocktail.repository.CocktailRepositoryFactory;
 import com.ingesup.cocktail.service.CocktailService;
-import com.ingesup.cocktail.service.CocktailServiceFactory;
-import com.ingesup.cocktail.service.CocktailServiceImpl;
 
 import java.util.List;
 

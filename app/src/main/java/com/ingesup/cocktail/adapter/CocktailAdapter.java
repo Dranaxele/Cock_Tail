@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.metier.Cocktail;
+import com.ingesup.cocktail.service.CocktailServiceFactory;
 import com.ingesup.cocktail.utils.FavouriteCocktailUtil;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class CocktailAdapter extends BaseAdapter {
 			viewHolder.cocktailName.setText(cocktail.getNom());
 			viewHolder.cocktailColor.setText(cocktail.getCouleur());
 
-			if (FavouriteCocktailUtil.getFavouritesCocktails().contains(cocktail)) {
+			if (CocktailServiceFactory.instance(context).findFavourites().contains(cocktail)) {
 				viewHolder.favouriteImage.setImageResource(android.R.drawable.star_on);
 			}
 		}

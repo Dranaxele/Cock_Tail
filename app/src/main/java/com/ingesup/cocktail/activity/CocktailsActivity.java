@@ -23,7 +23,6 @@ import com.ingesup.cocktail.repository.SQLLite;
 import com.ingesup.cocktail.service.CocktailServiceFactory;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
 import com.ingesup.cocktail.task.CocktailsAsyncTask;
-import com.ingesup.cocktail.utils.DialogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +57,18 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
         initView();
 
-        // TODO handle errors
-        new CocktailsAsyncTask(this).execute("");
+        try {
+            if (CocktailServiceFactory.instance(this).findAll().size() < 0) {
+				new CocktailsAsyncTask(this).execute("");
+			}
+        }
+        catch (Exception e) {
+            Log.d("CK_SQLite", "Failed to retrieve cocktails");
+
+            progressDialog.hide();
+
+            Toast.makeText(this, R.string.failed_to_retrieve_cocktails, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void initView() {
