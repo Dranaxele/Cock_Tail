@@ -64,6 +64,15 @@ public class ViewCocktailActivity extends Activity {
 		this.cocktailDescriptionTextView.setText(cocktail.getDescription());
 
 		this.removeFromFavouriteButton = (Button) findViewById(R.id.removeFromFavouritesButton);
+
+		if (CocktailServiceFactory.instance(context).findFavourites().contains(cocktail)) {
+			this.removeFromFavouriteButton.setEnabled(true);
+			this.removeFromFavouriteButton.setVisibility(View.VISIBLE);
+		} else {
+			this.removeFromFavouriteButton.setEnabled(false);
+			this.removeFromFavouriteButton.setVisibility(View.INVISIBLE);
+		}
+
 		this.removeFromFavouriteButton.setText(R.string.removeFromFavourite);
 		this.removeFromFavouriteButton.setOnClickListener(new View.OnClickListener() {
 
