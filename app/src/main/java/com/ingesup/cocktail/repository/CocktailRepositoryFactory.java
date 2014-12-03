@@ -10,11 +10,24 @@ public class CocktailRepositoryFactory {
 
 	private static CocktailRepository cocktailRepository;
 
+	private static SQLLite sqlLite;
+
 	public static CocktailRepository instance(Context context) {
 		if (cocktailRepository == null) {
-			cocktailRepository = new SQLLite(context).getBDDUsage();
+			if (sqlLite == null) {
+				sqlLite = new SQLLite(context);
+				sqlLite.open();
+			}
+			
+			cocktailRepository = sqlLite.getBDDUsage();
 		}
 
 		return cocktailRepository;
+	}
+
+	public static void closeRepository() {
+		if (sqlLite != null) {
+			sqlLite.close();
+		}
 	}
 }

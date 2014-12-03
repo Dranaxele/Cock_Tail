@@ -62,7 +62,8 @@ public class SQLLite {
 							   "base Text NOT NULL," +
 							   "ingredients TEXT NOT NULL," +
 							   "description TEXT NOT NULL," +
-							   "nom_photo TEXT NOT NULL)");
+							   "nom_photo TEXT NOT NULL," +
+							   "cocktail_favourite INTEGER NOT NULL)");
 
 			Log.d("GDL_action", "SQLLite : SQLLiteGestion onCreate : Creation de la table dans la base de donnees.");
 		}
@@ -86,7 +87,7 @@ public class SQLLite {
 		}
 
 		public void actionMettreAJourTableCocktail() {
-			db.execSQL("DROP cocktail");
+			db.execSQL("DROP TABLE IF EXISTS cocktail");
 			db.execSQL("CREATE TABLE IF NOT EXISTS cocktail (id INTEGER PRIMARY KEY," +
 							   "nom TEXT NOT NULL UNIQUE ON CONFLICT REPLACE," +
 							   "couleur TEXT NOT NULL," +
@@ -94,7 +95,8 @@ public class SQLLite {
 							   "base Text NOT NULL," +
 							   "ingredients TEXT NOT NULL," +
 							   "description TEXT NOT NULL," +
-							   "nom_photo TEXT NOT NULL)");
+							   "nom_photo TEXT NOT NULL," +
+							   "favourite_cocktail INTEGER NOT NULL)");
 			Log.d("GDL_action", "SQLLite --> SQLLiteUsage : actionMettreAJourTableCocktail : mise a jour de la table cocktail ok.");
 		}
 
@@ -118,6 +120,7 @@ public class SQLLite {
 				values.put("ingredients", ((String) unCocktail.getIngredient()));
 				values.put("description", ((String) unCocktail.getDescription()));
 				values.put("nom_photo", ((String) unCocktail.getNomPhoto()));
+				values.put("favourite_cocktail", 0);
 
 				result = db.insert("cocktail", null, values);
 
@@ -154,6 +157,13 @@ public class SQLLite {
 			return mCount.getCount();
 		}
 
+		@Override
+		public void addAll(List<Cocktail> cocktails) {
+			for (Cocktail cocktail : cocktails) {
+				this.insertionCocktail(cocktail);
+			}
+		}
+
 		public Cocktail recupererCocktail(String nom) {
 			Log.d("GDL_action", "SQLLite --> SQLLiteUsage : recupererCocktail : Recuperation d'un cocktail dans la BDD SQLLite avec le nom : " + nom + ".");
 
@@ -169,6 +179,8 @@ public class SQLLite {
 											   cursor.getString(8)
 			);
 
+			cursor.close();
+
 			return unCocktail;
 		}
 
@@ -177,25 +189,27 @@ public class SQLLite {
 
 			Log.d("GDL_action", "SQLLite --> SQLLiteUsage : retrieving favourites cocktails ...");
 
-			Cursor cursor = db.rawQuery(FIND_FAVOURITES_COCKTAILS_SQL, null);
+			Cursor cursor = db.rawQuery(FIND_FAVOURITES_COCKTAILS_SQL, new String[]{});
 
 			if (cursor.moveToFirst()) {
 				do {
 					// TODO
 					Cocktail favouriteCocktail = new Cocktail(cursor.getInt(1),
-													   cursor.getString(2),
-													   cursor.getString(3),
-													   cursor.getString(4),
-													   cursor.getString(5),
-													   cursor.getString(6),
-													   cursor.getString(7),
-													   cursor.getString(8)
+															  cursor.getString(2),
+															  cursor.getString(3),
+															  cursor.getString(4),
+															  cursor.getString(5),
+															  cursor.getString(6),
+															  cursor.getString(7),
+															  cursor.getString(8)
 					);
 
 					favouritesCocktails.add(favouriteCocktail);
 				}
 				while (cursor.moveToNext());
 			}
+
+			cursor.close();
 
 			return favouritesCocktails;
 		}
@@ -232,6 +246,8 @@ public class SQLLite {
 				}
 				while (cursor.moveToNext());
 			}
+
+			cursor.close();
 
 			return cocktails;
 		}

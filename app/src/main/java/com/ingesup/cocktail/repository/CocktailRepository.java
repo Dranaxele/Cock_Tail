@@ -25,4 +25,6 @@ public interface CocktailRepository {
 	public void supprimerCocktail(String nomCocktail);
 
 	public int countCocktail(String nom);
+
+	public void addAll(List<Cocktail> cocktails);
 }

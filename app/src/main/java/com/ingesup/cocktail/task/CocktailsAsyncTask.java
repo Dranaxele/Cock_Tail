@@ -6,6 +6,7 @@ import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.service.CocktailService;
 import com.ingesup.cocktail.service.CocktailServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class CocktailsAsyncTask extends AsyncTask<String, Integer, List<Cocktail
 			return this.cocktailService.findAll();
 		} catch (Exception e) {
 			Log.e(TAG, "Error while retrieving cocktails " + e.getMessage());
-			return null;
+			return new ArrayList<Cocktail>();
 		}
 	}
 

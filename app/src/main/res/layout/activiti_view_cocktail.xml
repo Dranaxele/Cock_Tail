@@ -35,51 +35,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CocktailColor"
-        android:id="@+id/cocktailItemColorTextView"
+        android:id="@+id/cocktailColorTextView"
         android:layout_below="@+id/lbNom"
         android:layout_toRightOf="@+id/cocktailColorLabel"
         android:layout_toEndOf="@+id/cocktailColorLabel"
         android:layout_alignBaseline="@+id/cocktailColorLabel"/>
 
     <TextView
-        android:id="@+id/cocktailBase"
+        android:id="@+id/cocktailBaseLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cocktail_base"
-        android:layout_below="@+id/lbColor"
+        android:layout_below="@+id/cocktailColorLabel"
         android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/cocktailItemBaseTextView"
+        android:id="@+id/cocktailBaseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CocktailBase"
-        android:layout_toRightOf="@+id/lbBase"
-        android:layout_below="@+id/lbColor"
-        android:layout_alignBaseline="@+id/lbBase"/>
+        android:layout_toRightOf="@+id/cocktailBaseLabel"
+        android:layout_below="@+id/cocktailColorLabel"
+        android:layout_alignBaseline="@+id/cocktailBaseLabel"/>
 
     <TextView
-        android:id="@+id/cocktailAlcohol"
+        android:id="@+id/cocktailAlcoholLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cocktail_alcohol"
-        android:layout_below="@+id/lbBase"
+        android:layout_below="@+id/cocktailBaseLabel"
         android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/cocktailItemAlcoolTextView"
+        android:id="@+id/cocktailAlcoolTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lbBase"
-        android:layout_toRightOf="@+id/lbAlcool"
+        android:layout_below="@+id/cocktailBaseLabel"
+        android:layout_toRightOf="@+id/cocktailAlcoholLabel"
         android:text="CocktailAlcool"
-        android:layout_alignBaseline="@+id/lbAlcool"/>
+        android:layout_alignBaseline="@+id/cocktailAlcoholLabel"/>
 
     <TextView
         android:id="@+id/lbIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lbAlcool"
+        android:layout_below="@+id/cocktailAlcoholLabel"
         android:text="@string/cocktail_ingredients"
         android:layout_margin="5dp" />
 
@@ -87,13 +87,13 @@
         android:id="@+id/cocktailIngredientTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lbAlcool"
+        android:layout_below="@+id/cocktailAlcoholLabel"
         android:layout_toRightOf="@+id/lbIngredient"
         android:text="CocktailIngredient"
         android:layout_alignBaseline="@+id/lbIngredient"/>
 
     <TextView
-        android:id="@+id/cocktailDescription"
+        android:id="@+id/cocktailDescriptionLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lbIngredient"
@@ -101,13 +101,13 @@
         android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/cocktailItemDescriptionTextView"
+        android:id="@+id/cocktailDescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/lbIngredient"
-        android:layout_toRightOf="@+id/lbDescription"
+        android:layout_toRightOf="@+id/cocktailDescriptionLabel"
         android:text="CocktailDescription"
-        android:layout_alignBaseline="@+id/lbDescription"/>
+        android:layout_alignBaseline="@+id/cocktailDescriptionLabel"/>
 
  <!--   <ToggleButton
         android:layout_width="wrap_content"

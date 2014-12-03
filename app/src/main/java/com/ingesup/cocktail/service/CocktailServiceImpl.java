@@ -33,6 +33,11 @@ public class CocktailServiceImpl implements CocktailService {
 	}
 
 	@Override
+	public List<Cocktail> dbFindAll() throws Exception {
+		return CocktailRepositoryFactory.instance(context).recupererCocktails();
+	}
+
+	@Override
 	public List<Cocktail> findFavourites() {
 		return CocktailRepositoryFactory.instance(context).getFavouritesCocktails();
 	}
@@ -63,6 +68,11 @@ public class CocktailServiceImpl implements CocktailService {
 	@Override
 	public void removeCocktailFromFavourite(int cocktailId) {
 		CocktailRepositoryFactory.instance(context).removeCocktailFromFavourite(cocktailId);
+	}
+
+	@Override
+	public void addAll(List<Cocktail> cocktails) {
+		CocktailRepositoryFactory.instance(context).addAll(cocktails);
 	}
 
 	@Override

@@ -43,7 +43,7 @@ public class ViewCocktailActivity extends Activity {
 		} catch (Exception e) {
 			Toast.makeText(this, R.string.cocktail_not_found, Toast.LENGTH_LONG);
 
-			finish();
+			System.exit(0);
 		}
 	}
 
@@ -54,13 +54,13 @@ public class ViewCocktailActivity extends Activity {
 		this.cocktailNameTextView = (TextView) findViewById(R.id.cocktailNameTextView);
 		this.cocktailNameTextView.setText(cocktail.getNom());
 
-		this.cocktailAlcoholTextView = (TextView) findViewById(R.id.cocktailAlcohol);
+		this.cocktailAlcoholTextView = (TextView) findViewById(R.id.cocktailAlcoolTextView);
 		this.cocktailAlcoholTextView.setText(cocktail.getAlcool());
 
 		this.cocktailIngredientsTextView = (TextView) findViewById(R.id.cocktailIngredientTextView);
 		this.cocktailIngredientsTextView.setText(cocktail.getIngredient());
 
-		this.cocktailDescriptionTextView = (TextView) findViewById(R.id.cocktailDescription);
+		this.cocktailDescriptionTextView = (TextView) findViewById(R.id.cocktailDescriptionTextView);
 		this.cocktailDescriptionTextView.setText(cocktail.getDescription());
 
 		this.removeFromFavouriteButton = (Button) findViewById(R.id.removeFromFavouritesButton);

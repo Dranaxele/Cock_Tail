@@ -47,27 +47,29 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
         setContentView(R.layout.activity_cocktails);
 
-        // SQLLite start :
-        monSqlLite = new SQLLite(this);
-        monSqlLite.open();
-        Log.d("CK_SQLite", " MainActivity : MainActivity onCreate : Etat de la connexion � la base de donn�e : " + monSqlLite.state() + ".");
-        // SQLLite end :
-        monSqlLite.close();
-        monSqlLite = null;
+//        Log.d("CK_SQLite", " MainActivity : MainActivity onCreate : Etat de la connexion � la base de donn�e : " + monSqlLite.state() + ".");
 
         initView();
 
         try {
-            if (CocktailServiceFactory.instance(this).findAll().size() < 0) {
+            if (CocktailServiceFactory.instance(this).dbFindAll().size() < 1) {
 				new CocktailsAsyncTask(this).execute("");
 			}
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.d("CK_SQLite", "Failed to retrieve cocktails");
 
             progressDialog.hide();
 
             Toast.makeText(this, R.string.failed_to_retrieve_cocktails, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (monSqlLite != null) {
+            monSqlLite.close();
+            monSqlLite = null;
         }
     }
 
@@ -146,6 +148,10 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
     @Override
     public void deliverResult(List<Cocktail> result) {
         this.cocktails = result;
+
+        if (result.size() > 0) {
+            CocktailServiceFactory.instance(this).addAll(result);
+        }
 
         if (this.cocktailsAdapter == null) {
             this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);

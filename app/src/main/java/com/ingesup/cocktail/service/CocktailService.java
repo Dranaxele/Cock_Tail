@@ -13,6 +13,8 @@ public interface CocktailService {
 
 	public List<Cocktail> findAll() throws Exception;
 
+	public List<Cocktail> dbFindAll() throws Exception;
+
 	public List<Cocktail> findFavourites();
 
 	public Cocktail findById(int id) throws Exception;
@@ -22,4 +24,6 @@ public interface CocktailService {
 	public void removeCocktailFromFavourite(int cocktailId);
 
 	public void setContext(Context context);
+
+	public void addAll(List<Cocktail> cocktails);
 }
