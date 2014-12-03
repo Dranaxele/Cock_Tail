@@ -7,11 +7,11 @@
         android:id="@+id/lbNom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nom: "
+        android:text="@string/cocktail_name"
         android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/cocktailItemNameTextView"
+        android:id="@+id/cocktailNameTextView"
         android:text="CocktailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/lbColor"
+        android:id="@+id/cocktailColorLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Couleur: "
+        android:text="@string/cocktail_color"
         android:layout_below="@+id/lbNom"
         android:layout_margin="5dp" />
 
@@ -37,15 +37,15 @@
         android:text="CocktailColor"
         android:id="@+id/cocktailItemColorTextView"
         android:layout_below="@+id/lbNom"
-        android:layout_toRightOf="@+id/lbColor"
-        android:layout_toEndOf="@+id/lbColor"
-        android:layout_alignBaseline="@+id/lbColor"/>
+        android:layout_toRightOf="@+id/cocktailColorLabel"
+        android:layout_toEndOf="@+id/cocktailColorLabel"
+        android:layout_alignBaseline="@+id/cocktailColorLabel"/>
 
     <TextView
-        android:id="@+id/lbBase"
+        android:id="@+id/cocktailBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Base: "
+        android:text="@string/cocktail_base"
         android:layout_below="@+id/lbColor"
         android:layout_margin="5dp" />
 
@@ -59,10 +59,10 @@
         android:layout_alignBaseline="@+id/lbBase"/>
 
     <TextView
-        android:id="@+id/lbAlcool"
+        android:id="@+id/cocktailAlcohol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Alcool: "
+        android:text="@string/cocktail_alcohol"
         android:layout_below="@+id/lbBase"
         android:layout_margin="5dp" />
 
@@ -80,11 +80,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lbAlcool"
-        android:text="Ingredients: "
+        android:text="@string/cocktail_ingredients"
         android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/cocktailItemIngredientTextView"
+        android:id="@+id/cocktailIngredientTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lbAlcool"
@@ -93,11 +93,11 @@
         android:layout_alignBaseline="@+id/lbIngredient"/>
 
     <TextView
-        android:id="@+id/lbDescription"
+        android:id="@+id/cocktailDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lbIngredient"
-        android:text="Descritpion: "
+        android:text="@string/cocktail_description"
         android:layout_margin="5dp" />
 
     <TextView
@@ -109,7 +109,7 @@
         android:text="CocktailDescription"
         android:layout_alignBaseline="@+id/lbDescription"/>
 
-    <ToggleButton
+ <!--   <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="AddFavorite"
@@ -118,7 +118,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textOn="Supprimer"
-        android:textOff="Ajouter"/>
+        android:textOff="Ajouter"/>-->
 
     <ImageView
         android:layout_width="200dp"
@@ -127,6 +127,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+            android:id="@+id/removeFromFavouritesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

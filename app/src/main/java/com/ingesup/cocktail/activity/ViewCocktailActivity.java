@@ -21,6 +21,10 @@ public class ViewCocktailActivity extends Activity {
 	private Cocktail cocktail;
 
 	private TextView cocktailNameTextView;
+	private TextView cocktailIngredientsTextView;
+	private TextView cocktailAlcoholTextView;
+	private TextView cocktailDescriptionTextView;
+
 	private Button removeFromFavouriteButton;
 
 	private Context context;
@@ -47,14 +51,30 @@ public class ViewCocktailActivity extends Activity {
 		setContentView(R.layout.activiti_view_cocktail);
 
 		// TODO init TextView to show cocktail name, desc, ...
+		this.cocktailNameTextView = (TextView) findViewById(R.id.cocktailNameTextView);
+		this.cocktailNameTextView.setText(cocktail.getNom());
 
-		this.removeFromFavouriteButton = (Button) findViewById(R.id.removeFromFavouriteButton);
+		this.cocktailAlcoholTextView = (TextView) findViewById(R.id.cocktailAlcohol);
+		this.cocktailAlcoholTextView.setText(cocktail.getAlcool());
+
+		this.cocktailIngredientsTextView = (TextView) findViewById(R.id.cocktailIngredientTextView);
+		this.cocktailIngredientsTextView.setText(cocktail.getIngredient());
+
+		this.cocktailDescriptionTextView = (TextView) findViewById(R.id.cocktailDescription);
+		this.cocktailDescriptionTextView.setText(cocktail.getDescription());
+
+		this.removeFromFavouriteButton = (Button) findViewById(R.id.removeFromFavouritesButton);
 		this.removeFromFavouriteButton.setText(R.string.removeFromFavourite);
 		this.removeFromFavouriteButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				CocktailServiceFactory.instance(context).removeCocktailFromFavourite(cocktail.getId());
+
+				removeFromFavouriteButton.setEnabled(false);
+				removeFromFavouriteButton.setVisibility(View.INVISIBLE);
+
+				Toast.makeText(context, R.string.cocktail_removed_from_favourites, Toast.LENGTH_SHORT);
 			}
 		});
 	}

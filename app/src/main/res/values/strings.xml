@@ -12,5 +12,12 @@
     <string name="failed_to_retrieve_cocktails">Failed to retrieve cocktails</string>
     <string name="removeFromFavourite">Remove from favourites</string>
     <string name="cocktail_not_found">Cocktail not found</string>
+    <string name="cocktail_removed_from_favourites">Cocktail removed from favourite</string>
+    <string name="cocktail_name">Nom:</string>
+    <string name="cocktail_color">Couleur:</string>
+    <string name="cocktail_base">Base:</string>
+    <string name="cocktail_alcohol">Alcool:</string>
+    <string name="cocktail_ingredients">Ingredients:</string>
+    <string name="cocktail_description">Description:</string>
 
 </resources>
