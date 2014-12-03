@@ -22,7 +22,6 @@ public class ViewCocktailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		final int cocktailId = getIntent().getIntExtra(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, 0);
 
-
 		initView();
 	}
 
@@ -30,5 +29,6 @@ public class ViewCocktailActivity extends Activity {
 		setContentView(R.layout.activiti_view_cocktail);
 
 		// TODO init TextView to show cocktail name, desc, ...
+
 	}
 }

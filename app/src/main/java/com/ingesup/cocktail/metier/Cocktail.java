@@ -97,7 +97,7 @@ public class Cocktail implements Parcelable {
         listeCocktail.add(theCocktail);
     }
 
-    public ArrayList<Cocktail> getPost(){
+    public static ArrayList<Cocktail> getPost(){
         return listeCocktail;
     }
 
