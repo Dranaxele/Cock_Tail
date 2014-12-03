@@ -1,7 +1,9 @@
 package com.ingesup.cocktail.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -15,13 +17,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.ingesup.cocktail.AppConstants;
 import com.ingesup.cocktail.R;
-import com.ingesup.cocktail.repository.SQLLite;
 import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
+import com.ingesup.cocktail.repository.SQLLite;
 import com.ingesup.cocktail.service.CocktailServiceFactory;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
 import com.ingesup.cocktail.task.CocktailsAsyncTask;
-import com.ingesup.cocktail.utils.FavouriteCocktailUtil;
+import com.ingesup.cocktail.utils.DialogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,15 +85,32 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, cocktails.get(position));
+                final int itemPosition = position;
 
                 if (CocktailServiceFactory.instance(context).findFavourites().contains(cocktails.get(position))) {
                     Toast.makeText(context, R.string.cocktail_already_exists_in_fav, Toast.LENGTH_SHORT).show();
                 } else {
-                    // TODO dialog : add to favourites ? Yes / No
-                    CocktailServiceFactory.instance(context).addCocktailToFavourite(position);
-                    Toast.makeText(context, R.string.cocktail_added_to_fav, Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                            .setTitle(R.string.confirm_title_add_to_favourite)
+                            .setMessage(R.string.confirm_title_add_to_favourite_question)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    CocktailServiceFactory.instance(context).addCocktailToFavourite(itemPosition);
+                                    Toast.makeText(context, R.string.cocktail_added_to_fav, Toast.LENGTH_SHORT).show();
+
+                                    dialog.dismiss();
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    builder.create().show();
                 }
 
                 return true;

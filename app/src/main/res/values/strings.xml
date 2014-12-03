@@ -7,5 +7,7 @@
     <string name="action_favoris">Favoris</string>
     <string name="cocktail_added_to_fav">Cocktail added to your favorites</string>
     <string name="cocktail_already_exists_in_fav">This cocktail already exists in your favourites</string>
+    <string name="confirm_title_add_to_favourite">Confirmation</string>
+    <string name="confirm_title_add_to_favourite_question">Are you sure to add this cocktail to your favs ?</string>
 
 </resources>

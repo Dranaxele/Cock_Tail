@@ -80,6 +80,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 20 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="caffeine-0.3.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-20.0.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.4.3" level="project" />
     <orderEntry type="library" exported="" name="spring-android-rest-template-2.0.0.M1" level="project" />
@@ -92,4 +93,3 @@
     <orderEntry type="library" exported="" name="spring-android-core-2.0.0.M1" level="project" />
   </component>
 </module>
-
