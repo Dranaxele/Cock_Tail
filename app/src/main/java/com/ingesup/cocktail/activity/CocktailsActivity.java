@@ -18,6 +18,7 @@ import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.repository.SQLLite;
 import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
+import com.ingesup.cocktail.service.CocktailServiceFactory;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
 import com.ingesup.cocktail.task.CocktailsAsyncTask;
 import com.ingesup.cocktail.utils.FavouriteCocktailUtil;
@@ -85,11 +86,11 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(AppConstants.COCKTAIL_ID_BUNDLE_PARAM, cocktails.get(position));
 
-                if (FavouriteCocktailUtil.getFavouritesCocktails().contains(cocktails.get(position))) {
+                if (CocktailServiceFactory.instance(context).findFavourites().contains(cocktails.get(position))) {
                     Toast.makeText(context, R.string.cocktail_already_exists_in_fav, Toast.LENGTH_SHORT).show();
                 } else {
                     // TODO dialog : add to favourites ? Yes / No
-                    FavouriteCocktailUtil.addFavouriteCocktail(cocktails.get(position));
+                    CocktailServiceFactory.instance(context).addCocktailToFavourite(position);
                     Toast.makeText(context, R.string.cocktail_added_to_fav, Toast.LENGTH_SHORT).show();
                 }
 
@@ -119,7 +120,6 @@ public class CocktailsActivity extends ActionBarActivity implements AsyncTaskCal
         this.cocktails = result;
 
         if (this.cocktailsAdapter == null) {
-            FavouriteCocktailUtil.addFavouriteCocktail(this.cocktails.get(1));
             this.cocktailsAdapter = new CocktailAdapter(this, this.cocktails);
             this.cocktailsListView.setAdapter(this.cocktailsAdapter);
         }

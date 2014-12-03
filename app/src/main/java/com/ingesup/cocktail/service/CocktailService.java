@@ -13,7 +13,11 @@ public interface CocktailService {
 
 	public List<Cocktail> findAll() throws Exception;
 
-	public List<Cocktail> findFavourites(Context context);
+	public List<Cocktail> findFavourites();
 
 	public Cocktail findById(int id) throws Exception;
+
+	public void addCocktailToFavourite(int cocktailId);
+
+	public void setContext(Context context);
 }

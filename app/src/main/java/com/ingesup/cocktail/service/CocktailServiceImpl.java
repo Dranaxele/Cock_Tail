@@ -18,6 +18,8 @@ public class CocktailServiceImpl implements CocktailService {
 
 	private static final String COCKTAILS_URL = "http://alexandreplaitant.ddns.net/android/cocktail.php";
 
+	private Context context;
+
 	@Override
 	public List<Cocktail> findAll() throws Exception {
 
@@ -31,7 +33,7 @@ public class CocktailServiceImpl implements CocktailService {
 	}
 
 	@Override
-	public List<Cocktail> findFavourites(Context context) {
+	public List<Cocktail> findFavourites() {
 		return CocktailRepositoryFactory.instance(context).getFavouritesCocktails();
 	}
 
@@ -51,5 +53,15 @@ public class CocktailServiceImpl implements CocktailService {
 		}
 
 		return cocktailToRetrieve;
+	}
+
+	@Override
+	public void addCocktailToFavourite(int cocktailId) {
+		CocktailRepositoryFactory.instance(context).addCocktailToFavourite(cocktailId);
+	}
+
+	@Override
+	public void setContext(Context context) {
+		this.context = context;
 	}
 }
