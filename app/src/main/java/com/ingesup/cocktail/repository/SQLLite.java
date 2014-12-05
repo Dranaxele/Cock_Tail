@@ -22,8 +22,8 @@ public class SQLLite {
 	private static final String FIND_ALL_COCKTAILS_SQL = "SELECT * FROM cocktail";
 	private static final String FIND_COCKTAIL_BY_ID = "SELECT * FROM cocktail WHERE id = ?";
 	private static final String FIND_FAVOURITES_COCKTAILS_SQL = "SELECT * FROM cocktail WHERE cocktail_favourite = 1";
-	private static final String ADD_COCKTAIL_TO_FAVOURITES_SQL = "UPDATE cocktail SET cocktail_favourite = 1 WHERE cocktail_id = ?";
-	private static final String REMOVE_COCKTAIL_FROM_FAVOURITE_SQL = "UPDATE cocktail SET cocktail_favourite = 0 WHERE cocktail_id = ?";
+	private static final String ADD_COCKTAIL_TO_FAVOURITES_SQL = "UPDATE cocktail SET cocktail_favourite = 1 WHERE id = ?";
+	private static final String REMOVE_COCKTAIL_FROM_FAVOURITE_SQL = "UPDATE cocktail SET cocktail_favourite = 0 WHERE id = ?";
 
 	private static class CocktailSqlColumns {
 		private static final String ID = "id";

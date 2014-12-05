@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import com.ingesup.cocktail.AppConstants;
+import com.ingesup.cocktail.utils.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.adapter.CocktailFavorisAdapter;
 import com.ingesup.cocktail.metier.Cocktail;

@@ -1,4 +1,4 @@
-package com.ingesup.cocktail;
+package com.ingesup.cocktail.utils;
 
 /**
  * Created by lopes_f on 11/19/2014.

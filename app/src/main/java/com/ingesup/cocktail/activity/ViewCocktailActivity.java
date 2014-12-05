@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.ingesup.cocktail.AppConstants;
+import com.ingesup.cocktail.utils.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.service.CocktailServiceFactory;

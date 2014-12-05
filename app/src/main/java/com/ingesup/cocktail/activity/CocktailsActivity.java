@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.ingesup.cocktail.AppConstants;
+import com.ingesup.cocktail.utils.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;

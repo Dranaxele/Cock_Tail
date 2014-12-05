@@ -19,6 +19,9 @@ public class CocktailRepositoryFactory {
 				sqlLite.open();
 			}
 
+			// TODO : delete when db is updated
+			sqlLite.getBDDUsage().actionMettreAJourTableCocktail();
+
 			cocktailRepository = sqlLite.getBDDUsage();
 		}
 
