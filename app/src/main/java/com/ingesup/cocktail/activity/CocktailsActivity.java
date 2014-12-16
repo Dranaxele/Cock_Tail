@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.ingesup.cocktail.utils.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.adapter.CocktailAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
@@ -23,6 +22,7 @@ import com.ingesup.cocktail.repository.SQLLite;
 import com.ingesup.cocktail.service.CocktailServiceFactory;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
 import com.ingesup.cocktail.task.CocktailsAsyncTask;
+import com.ingesup.cocktail.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;

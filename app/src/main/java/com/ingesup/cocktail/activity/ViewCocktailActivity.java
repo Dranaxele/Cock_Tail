@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.ingesup.cocktail.utils.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.service.CocktailServiceFactory;
+import com.ingesup.cocktail.utils.AppConstants;
 
 /**
  * Created by lopes_f on 11/19/2014.

@@ -6,12 +6,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import com.ingesup.cocktail.utils.AppConstants;
 import com.ingesup.cocktail.R;
 import com.ingesup.cocktail.adapter.CocktailFavorisAdapter;
 import com.ingesup.cocktail.metier.Cocktail;
 import com.ingesup.cocktail.task.AsyncTaskCallback;
 import com.ingesup.cocktail.task.CocktailsAsyncTask;
+import com.ingesup.cocktail.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
